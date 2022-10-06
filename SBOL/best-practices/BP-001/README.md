@@ -5,11 +5,8 @@ BP                     | <leave empty>
 ----------------------|--------------
 **Title**                | Representation of Parts and Devices for Build Planning
 **Authors**           | Jacob Beal (jakebeal@ieee.org), Vinoo Selvarajah, Gael Chambonnier, Traci Haddock-Angelli, Alejandro Vignoni, Gonzalo Vidal, Nicholas Roehner
-**Editor**            | 
-**Type**               | Data Model
-**SBOL Version** | SBOL 3.1
+**SBOL Version** | SBOL 3.0.1 and later
 **Replaces**        | None
-**Status**             | Draft
 **Created**          | 6-Jan-2022
 **Last modified**  | 6-Oct-2022
 
