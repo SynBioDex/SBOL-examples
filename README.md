@@ -19,11 +19,13 @@ Once your BEP is ready, please follow these steps:
 
 - [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the `SBOL-examples` repository. 
 - Create a folder titled "BEP-XYZ" under the best-practices folder. Please track the discussion sessions and existing BEPs to assign a number to your BEP. For instance, if the latest BEP in discussion or accepted BEP is titled BEP012, please use the title: BEP013 for your new proposal.
-- Please [start a new discussion](https://github.com/SynBioDex/SBOL-examples/discussions/new) with number and title of your BEP. For example: `BEP013 - Representing SBOL Workflows`
+- Please [start a new discussion](https://github.com/SynBioDex/SBOL-examples/discussions/new) with number and title of your BEP. For example: `BEP013 - Representing SBOL Workflows`.
+- Once the discussion phase has finished, the community will vote on the BEP. 
 
 ### Voting on a BEP
 Voting and governance procedures for BEPs will follow the same as SEPs. To get the latest details, please see the [Voting Procedures in the SBOL website](https://sbolstandard.org/community-governance/).
 
+If the BEP has been accepted, an SBOL editor will merge the PR with the `main` branch.
 
 ## Submitting a new example. 
 **The contents of this repository will be moderated by the SBOL editors to ensure that the examples are organized and accessible**. However, we encourage submissions from anyone in the SBOL community. 
