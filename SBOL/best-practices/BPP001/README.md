@@ -1,5 +1,6 @@
-BP 001 -- Representation of Parts and Devices for Build Planning
+BPP -- Representation of Parts and Devices for Build Planning
 ===================================
+
 
 BP                     | <leave empty>
 ----------------------|--------------
@@ -19,7 +20,7 @@ Table of Contents
 
 * [1. Rationale](#rationale)
   * [1.1 Design Goals](#goals)
-* [2. Specification](#specification)
+* [2. Description](#description)
   * [2.1 Terminology](#terminology)
   * [2.2 Representation](#representation)
      * [Parts (Unitary, Composite, or Assembled) and Scars](#parts)
@@ -32,11 +33,8 @@ Table of Contents
      * [Check assembly compatibility for a part in backbone](#compatibility)
      * [Design a composite part via an assembly plan](#design)
 * [3. Example or Use Case](#example)
-* [4. Backwards Compatibility](#compatibility)
+* [4. Relationship to other BPPs](#relations)
 * [5. Discussion](#discussion)
-* [6. Competing BPs](#competing_bps)
-* [References](#references)
-* [Copyright](#copyright)
 
 ## 1. Rationale <a name="rationale"></a>
 
@@ -65,7 +63,7 @@ All of the activities on the following non-exhaustive list are intended to be su
 This proposal does not propose any changes to the SBOL data model. Rather, it is intended to only be a set of best practices to follow.
 
 
-## 2. Specification <a name="specification"></a>
+## 2. Description <a name="description"></a>
 
 ### 2.1 Terminology <a name="terminology"></a>
 
@@ -316,7 +314,7 @@ Figure 12 illustrates one way of representing the assembly of BBa_B0034 and BBa_
 
 **Figure 12:** Assembly example UML diagram with flanking sequences in backbone and `Locations`. The contents of BBa_G00000 and BBa_G00001 are purposefully omitted for simplicity of presentation. Objects are color-coded based on what they represent: orange is for the assembly plan, blue is for backbone, green is for part in backbone, yellow is for composite part, and pink is for part extract.
 
-## 4. Backwards Compatibility <a name='compatibility'></a>
+## 4. Relationship to Other BPPs <a name='relations'></a>
 
 This BP does not modify any existing definitions, and is thus backward compatible with SBOL 3.0.1
 
@@ -328,36 +326,3 @@ The recommendations in this BP for representing assembly may be updated or follo
 Although representation of genomic integration is not explicitly within scope of this BP, in many cases genomic integration can be represented in the same was as insertion of a part into a backbone. This can be done simply by substituting the genome for the backbone.
 
 Specific recommendations regarding device measurements are out of scope of this BP.
-
-
-## 6. Competing BPs <a name='competing_bps'></a>
-
-None at present
-
-References <a name='references'></a>
-----------------
-
-[pip]: https://pip.pypa.io/
-[npm]: https://www.npmjs.com/
-[Maven]: https://maven.apache.org/
-[apt]: https://manpages.debian.org/bullseye/apt/apt.8.en.html
-
-Copyright <a name='copyright'></a>
--------------
-<p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
-  <a rel="license"
-     href="http://creativecommons.org/publicdomain/zero/1.0/">
-    <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
-  </a>
-  <br />
-  To the extent possible under law,
-  <a rel="dct:publisher"
-     href="sbolstandard.org">
-    <span property="dct:title">SBOL developers</span></a>
-  has waived all copyright and related or neighboring rights to
-  <span property="dct:title">BP 001</span>.
-This work is published from:
-<span property="vcard:Country" datatype="dct:ISO3166"
-      content="US" about="sbolstandard.org">
-  United States</span>.
-</p>
