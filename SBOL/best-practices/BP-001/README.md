@@ -7,8 +7,7 @@ BP                     | <leave empty>
 **Authors**           | Jacob Beal (jakebeal@ieee.org), Vinoo Selvarajah, Gael Chambonnier, Traci Haddock-Angelli, Alejandro Vignoni, Gonzalo Vidal, Nicholas Roehner
 **SBOL Version** | SBOL 3.0.1 and later
 **Replaces**        | None
-**Created**          | 6-Jan-2022
-**Last modified**  | 6-Oct-2022
+**Approved**          | 
 
 Abstract
 -----------
