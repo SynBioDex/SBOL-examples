@@ -245,6 +245,7 @@
 <http://bbn.com/examples/GFP_scanning> <http://sbols.org/v3#hasNamespace> <http://bbn.com/examples> .
 <http://bbn.com/examples/GFP_scanning> <http://sbols.org/v3#hasVariableFeature> <http://bbn.com/examples/GFP_scanning/VariableFeature1> .
 <http://bbn.com/examples/GFP_scanning> <http://sbols.org/v3#name> "GFP scanning" .
+<http://bbn.com/examples/GFP_scanning> <http://sbols.org/v3#strategy> <http://sbols.org/v3#enumerate> .
 <http://bbn.com/examples/GFP_scanning> <http://sbols.org/v3#template> <http://bbn.com/examples/GFP_scanning_meta_template> .
 <http://bbn.com/examples/GFP_scanning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sbols.org/v3#CombinatorialDerivation> .
 <http://bbn.com/examples/GFP_scanning_1/VariableFeature1> <http://sbols.org/v3#cardinality> <http://sbols.org/v3#one> .

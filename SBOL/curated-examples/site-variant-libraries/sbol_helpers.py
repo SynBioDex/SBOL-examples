@@ -61,7 +61,7 @@ def make_variant_collections(doc: sbol3.Document, variant_lists: list[list[str]]
     variant_collections = dict()
     for variants in variant_lists:
         set_name = variant_set_name(variants)
-        if set_name not in variant_collections:
+        if variants and set_name not in variant_collections:
             collection = sbol3.Collection(sbol3.string_to_display_id(set_name),
                                           members=[aa_components[aa] for aa in variants])
             variant_collections[set_name] = collection
