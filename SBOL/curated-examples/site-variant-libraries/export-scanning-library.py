@@ -8,6 +8,7 @@ import sbol3
 from sbol_utilities.component import dna_component_with_sequence
 
 import excel_helpers
+import sbol_helpers
 
 EXCEL_FILE = Path('gfp-scanning-library.xlsx')
 SBOL_OUTPUT_FILE = Path('gfp-scanning-library.nt')
@@ -43,13 +44,11 @@ print(f'Created {len(aa_components)} Components for amino acid replacements')
 
 
 # Third, make a collection for each distinct set of variants to be used
-def variant_set_name(variant_set):
-    return 'variants_'+''.join(variant_set)
 # In the example file, there should be 21 collections: one per replaced sequence value (20 amino acids and stop codon)
 print('Creating Collections for each distinct set of variants')
 variant_collections = dict()
 for variants in variant_lists:
-    set_name = variant_set_name(variants)
+    set_name = sbol_helpers.variant_set_name(variants)
     if set_name not in variant_collections:
         collection = sbol3.Collection(sbol3.string_to_display_id(set_name),
                                       members=[aa_components[aa] for aa in variants])
@@ -57,21 +56,6 @@ for variants in variant_lists:
 doc.add(list(variant_collections.values()))
 print(f'Created {len(variant_collections)} Collections for sets of variants')
 
-
-def add_adjacent_to_last_feature(component: sbol3.Component, feature: sbol3.Feature) -> sbol3.Feature:
-    """Add a Feature to a Component, and indicate adjacency by linking to the last
-    feature (if any) via a Meets constraint
-
-    :param component: Component to add to
-    :param feature: Feature to be added
-    :return: pass-through return of feature
-    """
-    last_feature = component.features[-1] if component.features else None
-    component.features.append(feature)
-    if last_feature:  # if there is no last feature, the constraint is moot
-        meets_constraint = sbol3.Constraint(sbol3.SBOL_MEETS, last_feature, feature)
-        component.constraints.append(meets_constraint)
-    return feature
 
 # Fourth, make the template Component that will be used uniformly for the library
 # This will have a SubComponent for each non-varied region and a SubComponent for each varied amino acid
@@ -86,9 +70,10 @@ for variants, index in zip(variant_lists, range(1, len(original_sequence)+1)):
         current_fixed_region = None
         location = sbol3.Range(start=index, end=index, sequence=original.sequences[0])
         variable = sbol3.SubComponent(original, source_locations=[location])
-        add_adjacent_to_last_feature(template, variable)
+        sbol_helpers.add_adjacent_to_last_feature(template, variable)
+        variant_collection = variant_collections[sbol_helpers.variant_set_name(variants)]
         variable_feature = sbol3.VariableFeature(cardinality=sbol3.SBOL_ONE, variable=variable,
-                                                 variant_collections=[variant_collections[variant_set_name(variants)]])
+                                                 variant_collections=[variant_collection])
         per_site_libraries.append(sbol3.CombinatorialDerivation(f'{library_id}_{index}', name=f'{library_id}_{index}',
                                                                 template=template, strategy=sbol3.SBOL_ENUMERATE,
                                                                 variable_features=[variable_feature]))
@@ -96,13 +81,13 @@ for variants, index in zip(variant_lists, range(1, len(original_sequence)+1)):
         if not current_fixed_region:
             location = sbol3.Range(start=index, end=index, sequence=original.sequences[0])
             current_fixed_region = sbol3.SubComponent(original, source_locations=[location])
-            add_adjacent_to_last_feature(template, current_fixed_region)
+            sbol_helpers.add_adjacent_to_last_feature(template, current_fixed_region)
         else:
             current_fixed_region.source_locations[0].end = index
 doc.add(per_site_libraries)
 print(f'Created variation plans for {len(per_site_libraries)} individual sites')
 
-# Finally, create one top-level CombinatorialDerivation that contains all of the others
+# Finally, create one top-level CombinatorialDerivation that contains all the others
 print('Creating all-site library')
 meta_variable = sbol3.LocalSubComponent(types=[sbol3.SBO_DNA])
 meta_template = sbol3.Component(f'{library_id}_meta_template', types=[sbol3.SBO_DNA], features=[meta_variable])

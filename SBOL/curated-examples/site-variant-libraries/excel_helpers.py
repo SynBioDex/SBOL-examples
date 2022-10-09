@@ -58,7 +58,7 @@ def read_variant_table(excel_file: Path) -> tuple[str, str, list[list]]:
     base_sequence = [''.join(row) for row in row_iterator][0]
     print(f'Found sequence {len(base_sequence)} residues long: "{base_sequence}"')
 
-    # Finally, get all of the variant lists
+    # Finally, get all the variant lists
     column_iterator = sheet.iter_cols(min_row=FIRST_VARIANT_ROW, max_row=LAST_VARIANT_ROW,
                                       min_col=first_aa_column, max_col=last_aa_column, values_only=True)
     variant_lists = [[v for v in column if v] for column in column_iterator]  # drop the empty cells from each range

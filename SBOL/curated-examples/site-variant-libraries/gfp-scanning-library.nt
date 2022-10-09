@@ -1,4 +1,3 @@
-
 <http://bbn.com/examples/GFP_scanning/VariableFeature1> <http://sbols.org/v3#cardinality> <http://sbols.org/v3#one> .
 <http://bbn.com/examples/GFP_scanning/VariableFeature1> <http://sbols.org/v3#displayId> "VariableFeature1" .
 <http://bbn.com/examples/GFP_scanning/VariableFeature1> <http://sbols.org/v3#variable> <http://bbn.com/examples/GFP_scanning_meta_template/LocalSubComponent1> .
