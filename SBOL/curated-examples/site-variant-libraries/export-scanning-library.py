@@ -1,4 +1,6 @@
 import itertools
+import math
+import time
 from pathlib import Path
 from typing import Optional
 
@@ -10,6 +12,7 @@ import excel_helpers
 EXCEL_FILE = Path('gfp-scanning-library.xlsx')
 SBOL_OUTPUT_FILE = Path('gfp-scanning-library.nt')
 
+start_time = time.time()
 # load a sequence and variation table from the Excel file
 print('Reading Excel table')
 library_name, original_sequence, variant_lists = excel_helpers.read_variant_table(EXCEL_FILE)
@@ -86,8 +89,8 @@ for variants, index in zip(variant_lists, range(1, len(original_sequence)+1)):
         add_adjacent_to_last_feature(template, variable)
         variable_feature = sbol3.VariableFeature(cardinality=sbol3.SBOL_ONE, variable=variable,
                                                  variant_collections=[variant_collections[variant_set_name(variants)]])
-        per_site_libraries.append(sbol3.CombinatorialDerivation(f'{library_id}_{index}', template,
-                                                                strategy=sbol3.SBOL_ENUMERATE,
+        per_site_libraries.append(sbol3.CombinatorialDerivation(f'{library_id}_{index}', name=f'{library_id}_{index}',
+                                                                template=template, strategy=sbol3.SBOL_ENUMERATE,
                                                                 variable_features=[variable_feature]))
     else:  # otherwise, start or extend a fixed region
         if not current_fixed_region:
@@ -95,7 +98,7 @@ for variants, index in zip(variant_lists, range(1, len(original_sequence)+1)):
             current_fixed_region = sbol3.SubComponent(original, source_locations=[location])
             add_adjacent_to_last_feature(template, current_fixed_region)
         else:
-            current_fixed_region.locations[0].end = index
+            current_fixed_region.source_locations[0].end = index
 doc.add(per_site_libraries)
 print(f'Created variation plans for {len(per_site_libraries)} individual sites')
 
@@ -119,3 +122,5 @@ if report:
 print(f'Writing document to {SBOL_OUTPUT_FILE}')
 doc.write(str(SBOL_OUTPUT_FILE), sbol3.SORTED_NTRIPLES)
 print('Document written')
+
+print(f'Total elapsed time: {math.trunc(10*(time.time()-start_time))/10} seconds')
