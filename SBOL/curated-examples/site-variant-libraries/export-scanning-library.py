@@ -1,11 +1,10 @@
-import itertools
 import math
 import time
 from pathlib import Path
 from typing import Optional
 
 import sbol3
-from sbol_utilities.component import dna_component_with_sequence
+from sbol_utilities.component import protein_component_with_sequence
 
 import excel_helpers
 import sbol_helpers
@@ -18,6 +17,7 @@ start_time = time.time()
 print('Reading Excel table')
 library_name, original_sequence, variant_lists = excel_helpers.read_variant_table(EXCEL_FILE)
 # In the example file, there should be 239*21 = 5019 variants all told across all site lists
+print(f'Library specifies a total of {sum(len(variants) for variants in variant_lists)} variants')
 
 # Now, use the variant tables to create the SBOL model
 print('Creating SBOL document')
@@ -27,40 +27,27 @@ library_id = sbol3.string_to_display_id(library_name)
 
 # First, create a Component for the original sequence
 print('Creating Component for original sequence')
-original, seq = dna_component_with_sequence(f'{library_id}_original', original_sequence)
+original, seq = protein_component_with_sequence(f'{library_id}_original', original_sequence)
 doc.add([original, seq])
 
 
 # Second, create a Component for each amino acid option (including stop and delete, if they are used)
 print('Creating Components for amino acids replacements')
-all_aa_variants = sorted(set(itertools.chain(*variant_lists)))  # should be up to 22 different values
-# Each pair has a Component and its associated sequence
-aa_pairs = {aa: dna_component_with_sequence(sbol3.string_to_display_id(f'amino_acid_{aa}'), '' if aa == 'DEL' else aa)
-            for aa in all_aa_variants}
-# add them all to the document, then make a list of just the components
-doc.add(list(itertools.chain(*aa_pairs.values())))
-aa_components = {aa: pair[0] for aa, pair in aa_pairs.items()}
-print(f'Created {len(aa_components)} Components for amino acid replacements')
+aa_components = sbol_helpers.aa_component_table(doc, variant_lists)
+print(f'Created {len(aa_components)} Components for amino acid replacements')  # all 22 are used in the example file
 
 
 # Third, make a collection for each distinct set of variants to be used
 # In the example file, there should be 21 collections: one per replaced sequence value (20 amino acids and stop codon)
 print('Creating Collections for each distinct set of variants')
-variant_collections = dict()
-for variants in variant_lists:
-    set_name = sbol_helpers.variant_set_name(variants)
-    if set_name not in variant_collections:
-        collection = sbol3.Collection(sbol3.string_to_display_id(set_name),
-                                      members=[aa_components[aa] for aa in variants])
-        variant_collections[set_name] = collection
-doc.add(list(variant_collections.values()))
+variant_collections = sbol_helpers.make_variant_collections(doc, variant_lists, aa_components)
 print(f'Created {len(variant_collections)} Collections for sets of variants')
 
 
 # Fourth, make the template Component that will be used uniformly for the library
 # This will have a SubComponent for each non-varied region and a SubComponent for each varied amino acid
 print('Creating site variant template and per-site libraries')
-template = sbol3.Component(f'{library_id}_template', types=[sbol3.SBO_DNA])
+template = sbol3.Component(f'{library_id}_template', types=[sbol3.SBO_PROTEIN])
 doc.add(template)
 per_site_libraries = []
 variables: dict[int, sbol3.Feature] = dict()
@@ -89,8 +76,8 @@ print(f'Created variation plans for {len(per_site_libraries)} individual sites')
 
 # Finally, create one top-level CombinatorialDerivation that contains all the others
 print('Creating all-site library')
-meta_variable = sbol3.LocalSubComponent(types=[sbol3.SBO_DNA])
-meta_template = sbol3.Component(f'{library_id}_meta_template', types=[sbol3.SBO_DNA], features=[meta_variable])
+meta_variable = sbol3.LocalSubComponent(types=[sbol3.SBO_PROTEIN])
+meta_template = sbol3.Component(f'{library_id}_meta_template', types=[sbol3.SBO_PROTEIN], features=[meta_variable])
 doc.add(meta_template)
 meta_variable_feature = sbol3.VariableFeature(cardinality=sbol3.SBOL_ONE, variable=meta_variable,
                                               variant_derivations=per_site_libraries)

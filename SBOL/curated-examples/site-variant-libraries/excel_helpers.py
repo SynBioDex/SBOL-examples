@@ -62,6 +62,5 @@ def read_variant_table(excel_file: Path) -> tuple[str, str, list[list]]:
     column_iterator = sheet.iter_cols(min_row=FIRST_VARIANT_ROW, max_row=LAST_VARIANT_ROW,
                                       min_col=first_aa_column, max_col=last_aa_column, values_only=True)
     variant_lists = [[v for v in column if v] for column in column_iterator]  # drop the empty cells from each range
-    print(f'Library specifies a total of {sum(len(variants) for variants in variant_lists)} variants')
 
     return library_name, base_sequence, variant_lists
