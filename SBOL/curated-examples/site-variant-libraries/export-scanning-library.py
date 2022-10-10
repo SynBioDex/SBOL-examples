@@ -6,7 +6,7 @@ from typing import Optional
 import sbol3
 from sbol_utilities.component import protein_component_with_sequence
 
-import excel_helpers
+import excel_sbol_utils.helpers as excel_helpers
 import sbol_helpers
 
 EXCEL_FILE = Path('gfp-scanning-library.xlsx')
