@@ -43,11 +43,39 @@ For these reasons, this Best Practice Proposal sets out of a set of practices fo
 
 ### 2.1 Scanning Libraries <a name="scanning"></a>
 
+For a scanning library, the key challenge is to indicate that when one site is changed, another site should not be changed. This can be implemented using two layers of `CombinatorialDerivation` objects:
+
+ - For each site, a `CombinatorialDerivation` specifies the subset of sequences that vary that specific site. There is one such `CombinatorialDerivation` for every site.
+ - The per-site libraries are then used as `variantDerivation` values for a higher-level `CombinatorialDerivation`, thereby collectively describing a library that considers each site in turn.
+
+This representation can be made more efficient by sharing `template` and `variantCollection` values across the single-site libraries.  Specifically:
+
+- Consider the set of all values that are used by _any_ individual site and create a `Component` for each of these. For example, a site variant library for amino acids would have 20 values if every amino acid was an option in at least one site.
+  - Deletions and insertions can be included in the set of values by either using a `Component` with a length zero sequence or a variable with the `SBOL:zeroOrOne` cardinality rather than the `SBOL:one` cardinality.
+- The same set of variations is likely to be used multipled times, e.g., varying every A amino acid to "everything amino acid except for A". To this end, create a `Collection` for each distinct set of variations. 
+
+**[put a diagram here showing some variant libraries]**
+
+- The template consists of a chain of `SubComponent` features linked together with `Constraint` objects of type `SBOL:meets`. Each is an `instance_of` a `Component` for the original gene the library is based on and uses the `sourceLocation` property to select the portion of the gene it represents.
+  - The location of each site being varied is a `Range` covering that specific site.
+  - Each regions that is not being varied is represented by a `SubComponent` spanning the `Range` between variation sites.
+
+**[put a diagram here showing a template based on the combinatorial example]**
+
+- For each site being varied, create a per-site `CombinatorialDerivation`:
+  - The `strategy` property should be `SBOL:enumerate`
+  - The `template` should be the shared template `Component`
+  - There should be one `VariableFeature` whose `variable` is the template's `SubComponent` for the site, whose cardinality is `SBOL:one` (unless representing deletion or insertion via cardinality) and whose `variantCollection` points to the `Collection` of values for that site.
+
+- The higher-level `CombinatorialDerivation` should be:
+  - The `strategy` property should be `SBOL:enumerate`
+  - The `template` should be a placeholder `Component` with one `LocalSubComponent` feature.
+  - There should be one `VariableFeature` whose `variable` is the one feature in the template, and whose `variantDerivation` property is all the per-site `CombinatorialDerivation` objects as its values.
+
+
 ### 2.2 Combinatorial Libraries <a name="combinatorial"></a>
 
 Combinatorial libraries are simpler to represent than scanning libraries, since there is no constraint limiting the number of sites that vary. A combinatorial library is thus represented exactly like the variation of a single site, except that there are multiple variables rather than one variable.
-
-For example, the attached diagram shows a variation of GFP 
 
 ## 3. Example Files <a name='examples'></a>
 
@@ -58,10 +86,16 @@ Specifically, for both combinatorial and scanning libraries, we provide:
 * an Excel spreadsheet specifying a combinatorial library and another specifying a scanning library, 
 * a Python script that uses [SBOL-utilities](https://www.github.com/SynBioDex/SBOL-utilities) to convert the library-specifying Excel files into SBOL files, 
 * for each library, an SBOL output from the script containing its specification, 
-* a Python script that compute the expansion of each libraries into specific constructs, 
-* for each library, the final constructs generated in both SBOL and FASTA formats
 
 For more information, see the directory [README](../../curated-examples/site-variant-libraries/README.md). 
+
+<There will also be a Python script that compute the expansion of each library into specific constructs an exports them in both SBOL and FASTA formats. Currently, however, SBOL-utilities has bugs that are being triggered in the sequence calculation, so the final expansions that are computed is not correct. There is also an issue with slowness. The known issues are:>
+
+<The sequence calculator is ignoring sourceLocation, so it's putting in extra copies of the sequence>
+<Deletions are not being handled correctly. Currently, they are represented as length zero sequences. A better way would be to make it a "zero or one" variable, but expand-CDs probably isn't handling that yet either.>
+<ExpandCDs is requiring that things have names for its debugging logging, which shouldn't be running anyway. Need to fix both aspects of that.>
+<Creating new copies of the template becomes very slow over time, due to the deep cloning not being smart about copying contents.>
+
 
 ## 4. Relationship to Other BPPs <a name='relations'></a>
 
@@ -76,6 +110,7 @@ For representing scanning libraries, several other potential models were conside
 * We could scan by using a variantMeasure to indicate changes to start and end values
 * Rather than using variantCollections, we could point directly to the alternatives with variant properties
 * We could make an alternative where we use the Sequence rather than a Component for the template
+* Adding constraints that say that one site shouldn't vary if another does.
 
 
 
