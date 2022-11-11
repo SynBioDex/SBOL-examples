@@ -16,24 +16,24 @@ capture the following information: (i) taxonomy of the strain used,
 (ii) interactions occurring within cells of this type, and (iii)
 components inside the type of cell (e.g. genomes, plasmids). The
 approach RECOMMENDED in this section is capable of capturing this
-information, as shown in the example in [Figure 1](#figure-1). It uses a `Component`
+information, as shown in the example in [Figure 1](#figure-1). It uses a _Component_
 to represent a system that contains cells of the given type. The cells
-themselves are represented by a Feature inside the Component, in this
-case a SubComponent that is an instanceOf a Component capturing
+themselves are represented by a _Feature_ inside the _Component_, in this
+case a _SubComponent_ that is an _instanceOf_ a _Component_ capturing
 information about the species and strain of the cell in the
-design. This Component has a type of "cell" from the Gene Ontology
-(GO:0005623), and a role of "physical compartment"
+design. This _Component_ has a _type_ of "cell" from the Gene Ontology
+(GO:0005623), and a _role_ of "physical compartment"
 (SBO:0000290). Taxonomic information is captured by annotating the
 class instance with a URI for an entry in the NCBI Taxonomy Database.
 
 As usual, other entities besides the cell that are relevant to the
-design are also captured as Features. When these are contained within
-the cell, they are captured using a Constraint with restriction
-contains with the cell as subject and contained object as
-object. Interactions which occur in this system are captured using the
-Interaction and Participation classes. Interactions which occur within
-the cell are specified by Interaction classes which contain the
-Feature instance representing the cell as a participant with a role of
+design are also captured as *Feature*s. When these are contained within
+the cell, they are captured using a _Constraint_ with restriction
+contains with the cell as _subject_ and contained object as
+_object_. Interactions which occur in this system are captured using the
+_Interaction_ and _Participation_ classes. Interactions which occur within
+the cell are specified by _Interaction_ classes which contain the
+_Feature_ instance representing the cell as a _participant_ with a _role_ of
 "physical compartment" (SBO:0000290).
 
 <figure>
@@ -42,13 +42,13 @@ Feature instance representing the cell as a participant with a role of
   </a><br/>
   <figcaption>
     Figure 1: This is a proposed approach for capturing cell designs in
-    SBOL. A Component annotated with a URI pointing to an entry in the
+    SBOL. A <i>Component</i> annotated with a URI pointing to an entry in the
     NCBI Taxonomy Database is used to capture information about the cell’s
-    strain/species. The Component has a type of "Cell" from the Gene
-    Ontology (GO), and a role of "physical compartment". Another Component
+    strain/species. The <i>Component</i> has a type of "Cell" from the Gene
+    Ontology (GO), and a role of "physical compartment". Another <i>Component</i>
     is used to represent a system in which the cell is
     implemented. Entities, including the cell, are instantiated as
-    Features, and processes are captured using the Interaction
+    <i>Feature</i>s, and processes are captured using the <i>Interaction</i>
     class. Processes that are contained within the cell are represented by
     including the cell as a participant with a role of "physical
     compartment".
@@ -59,10 +59,10 @@ Feature instance representing the cell as a participant with a role of
 
 The same approach can be extended to represent systems with multiple
 types of cells. The multicellular system can be represented as a
-Component that includes each strain of cell as a Feature, in this
-example a SubComponent that is an instanceOf a Component defining
+_Component_ that includes each strain of cell as a _Feature_, in this
+example a _SubComponent_ that is an _instanceOf_ a _Component_ defining
 its strain. Interactions and constraints, such as a molecule that both
-strains interact with, are implemented using ComponentReferences to
+strains interact with, are implemented using *ComponentReference*s to
 link to the definitions within each cell system description. An
 example is shown in [Figure 2](#figure-2).
 
@@ -76,9 +76,9 @@ example is shown in [Figure 2](#figure-2).
     sender and receiver systems are captured using constraint to show
     that each of these cells interacts with the Molecule A contained
     within it. The overall multicellular system is represented by a
-    Component with a role of "functional compartment", which is an SBO
+    <i>Component</i> with a <i>role</i> of "functional compartment", which is an SBO
     term. The two systems are included in this multicellular design as
-    Features, and the fact that Molecule A is shared between systems is
+    <i>Feature</i>s, and the fact that Molecule A is shared between systems is
     indicated with a constraint.
   </figcaption>
 </figure>
@@ -86,7 +86,7 @@ example is shown in [Figure 2](#figure-2).
 ## Cell Ratios
 
 The proportion of cell types present in a multicellular system can be
-captured using `om:Measure` on the representations of cells in the
+captured using _om:Measure_ on the representations of cells in the
 design. As a best practice, the value of these measure classes is a
 percentage less than or equal to 100%, representing the amount of a
 cell type present in the system compared to all other cell types
