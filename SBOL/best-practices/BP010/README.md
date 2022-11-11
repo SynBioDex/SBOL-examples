@@ -39,7 +39,7 @@ Feature instance representing the cell as a participant with a role of
 <figure>
   <a id="figure-1">
   <img src="cell_representation.png" alt="Cell Representation UML diagram">
-  </a>
+  </a><br/>
   <figcaption>
     Figure 1: This is a proposed approach for capturing cell designs in
     SBOL. A Component annotated with a URI pointing to an entry in the
@@ -69,7 +69,7 @@ example is shown in [Figure 2](#figure-2).
 <figure>
   <a id="figure-2">
   <img src="two_cell_representation.png" alt="Two Cell Representation UML diagram">
-  </a>
+  </a><br/>
   <figcaption>
     Figure 2: Captured here is a design involving two cells which both
     interact with the small molecule "Molecule A". Designs for the
@@ -98,7 +98,7 @@ case if the system is not completely defined. An example is shown in
 <figure>
   <a id="figure-3">
   <img src="cell_ratios.png" alt="Cell Ratios UML diagram">
-  </a>
+  </a><br/>
   <figcaption>Figure 3: Annotating class instances with cellular proportions. Instances of the Measure class are used to capture the percentage of each cell type present in the multicellular system design.
   </figcaption>
 </figure>
