@@ -2,7 +2,7 @@
 
 External ontologies and controlled vocabularies are an integral part of SBOL. SBOL uses *IRIs* (typically *URLs* to access existing biological information through these resources.
 New SBOL-specific terms are defined only when necessary.
-For example, `Component types`, such as DNA or protein, are described using Systems Biology Ontology (SBO) terms. Similarly, the `roles` of a DNA or RNA `Component are described via Sequence Ontology (SO) terms. Although RECOMMENDED ontologies have been indicated in relevant sections where possible, other resources providing similar terms can also be used. A summary of these external sources can be found in \ref{tbl:preferred_external_resources}.
+For example, `Component types`, such as DNA or protein, are described using Systems Biology Ontology (SBO) terms. Similarly, the `roles` of a DNA or RNA `Component are described via Sequence Ontology (SO) terms. Although RECOMMENDED ontologies have been indicated in relevant sections where possible, other resources providing similar terms can also be used. A summary of these external sources can be found in the table below.
 
 ***
 **SBOL Entity** | **Property** | **Preferred External Resource** |
