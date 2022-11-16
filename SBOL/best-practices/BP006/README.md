@@ -20,7 +20,7 @@ For example, `Component types`, such as DNA or protein, are described using Syst
 
 | role | UniProt (*protein*) | https://www.uniprot.org/       
 
-| role | NCIT (**samples**) | https://ncithesaurus.nci.nih.gov/       
+| role | NCIT (*samples*) | https://ncithesaurus.nci.nih.gov/       
 
 **Interaction** | type | SBO (occurring entity branch) | http://www.ebi.ac.uk/sbo/main/
 
