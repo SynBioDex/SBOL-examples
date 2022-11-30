@@ -2,11 +2,13 @@
 
 ## 1 Mixtures via Components
 
-Any `Component` can be interpreted as specifying a mixture of the material entity (SBO:0000240) `Features` that it includes. The amount of each such instance included in the mixture SHOULD be specified by attaching a `om:Measure` with a `type` set to the appropriate SBO term. The SBO terms that are RECOMMENDED as appropriate are members of the Systems Description Parameter (SBO:0000545) branch of SBO. Examples include: 
+Any `Component` can be interpreted as specifying a mixture of the material entity (SBO:0000240) `Features` that it includes. The amount of each such instance included in the mixture SHOULD be specified by attaching a `om:Measure` with a `type` set to the appropriate SBO term.
+The SBO terms that are RECOMMENDED as appropriate are members of the Systems Description Parameter ([SBO:0000545](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:0000545)) branch of SBO.
+Examples include: 
 
- - SBO:0000540: fraction of an entity pool (e.g.,1/3 CHO cells, 2/3 HEKcells)
- - SBO:0000472: molar concentration of an entity (e.g.,1mM arabinose)
- - SBO:0000361: amount of an entity pool (e.g.,200 uL M9 media)
+ - [SBO:0000540](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000540): fraction of an entity pool (e.g.,1/3 CHO cells, 2/3 HEKcells)
+ - [SBO:0000472](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000472): molar concentration of an entity (e.g.,1mM arabinose)
+ - [SBO:0000361](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000361): amount of an entity pool (e.g., 200 uL M9 media)
  
  Mixtures MAY be defined recursively, as mixtures of mixtures of mixtures, etc.
  
@@ -16,11 +18,11 @@ Any `Component` can be interpreted as specifying a mixture of the material entit
  
  The roles of reagents may vary in context: for example, arabinose may serve as an inducer or as a media carbon source. As such, contextual `role` SHOULD be indicated by an NCI Thesaurus (NCIT) term in a role property of the `Feature`. Examples include:
  
-  - NCIT:C64356: PositiveControl
-  - NCIT:C48694: Cell
-  - NCIT:C85504: Media
-  - NCIT:C14419: Strain
-  - NCIT:C120268: Inducer
+  - [NCIT:C64356](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C64356): Positive Control
+  - [NCIT:C48694](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C48694): Cell
+  - [NCIT:C85504](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C85504): Growth Medium
+  - [NCIT:C14419](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C144199): Organism Strain
+  - [NCIT:C120268](https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C120268): Inducer
 
 For more information on representing cells, strains, plasmids, and genomes, see BP0010.
 For an example of media implementation using [pySBOL3](https://github.com/SynBioDex/pySBOL3) and [sbol-utilities](https://github.com/SynBioDex/SBOL-utilities), see [media implementation](https://github.com/SynBioDex/SBOL-examples/blob/BP009/SBOL/best-practices/BP009/media-implementation.ipynb).
@@ -41,6 +43,6 @@ A complete specification of a sample SHOULD be a `Component` that includes at le
  
  Values of these parameters SHOULD be specified by attaching a `om:Measure` with a `type` set to the appropriate SBO term. The SBO terms that are RECOMMENDED as appropriate are members of the Systems Description Parameter (SBO:0000545) branch of SBO. Examples include:
  
-  - SBO:0000147: thermodynamic temperature (e.g.,culturing at 27 C)
-  - SBO:0000332: half-life of an exponential decay(e.g.,decay rate of a gRNA)
-  - SBO:0000304: pH(e.g.,pH of M9 media)
+  - [SBO:0000147](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000147): thermodynamic temperature (e.g., culturing at 27 C)
+  - [SBO:0000332](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000332): half-life of an exponential decay (e.g., decay rate of a gRNA)
+  - [SBO:0000304](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000304): pH (e.g., pH of M9 media)
