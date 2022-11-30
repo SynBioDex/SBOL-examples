@@ -4,7 +4,7 @@ Maintaining unique IRIs for all SBOL objects can be challenging.  To reduce this
 
 Compliant URLs for `TopLevel` objects MUST conform to the following pattern:
 
-> <namespace>/<collection_structure>/<displayId>
+ `<namespace>/<collection_structure>/<displayId>`
 
 
 The `<namespace>` token MAY further decompose into `<domain>/<root>` tokens. The `<root>` and `<collection_structure>` tokens may optionally be omitted; alternatively, they may consist of an arbitrary number of delimiter-separated layers. Note that this pattern means that SBOL-compliant *URLs* can be automatically decomposed with the aid of a `TopLevel` object's `hasNamespace` property. SBOL-compliant objects can be easily remapped into new namespaces by changing only the `<namespace>`.
