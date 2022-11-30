@@ -76,9 +76,9 @@ example is shown in [Figure 2](#figure-2).
     sender and receiver systems are captured using constraint to show
     that each of these cells interacts with the Molecule A contained
     within it. The overall multicellular system is represented by a
-    <i>Component</i> with a <i>role</i> of "functional compartment", which is an SBO
+    <code>Component</code> with a <code>role</code> of "functional compartment", which is an SBO
     term. The two systems are included in this multicellular design as
-    <i>Feature</i>s, and the fact that Molecule A is shared between systems is
+    <code>Feature</code>s, and the fact that Molecule A is shared between systems is
     indicated with a constraint.
   </figcaption>
 </figure>
