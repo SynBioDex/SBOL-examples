@@ -99,6 +99,6 @@ case if the system is not completely defined. An example is shown in
   <a id="figure-3">
   <img src="cell_ratios.png" alt="Cell Ratios UML diagram">
   </a><br/>
-  <figcaption>Figure 3: Annotating class instances with cellular proportions. Instances of the Measure class are used to capture the percentage of each cell type present in the multicellular system design.
+  <figcaption>Figure 3: Annotating class instances with cellular proportions. Instances of the <code>Measure</code> class are used to capture the percentage of each cell type present in the multicellular system design.
   </figcaption>
 </figure>
