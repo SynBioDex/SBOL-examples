@@ -23,8 +23,8 @@ displayId: BBa\_J23101
 
 SBOL-compliant IRIs also facilitate auto-construction of child objects with unique *IRIs*.
 Child objects of `TopLevel` objects with compliant *IRIs* MUST conform to the following pattern:   
-`<parent_ur>/<child_type>/<child_type_counter>` where the `<parent_url>` refers to the IRI of the parent object, the `<child_type>` refers to the SBOL class of the child object, and `<child_type_counter>` is a unique index for the child object.
-The `<child_type_counter>` of a new object SHOULD be calculated at time of object creation as 1 + the maximum `<child_type_counter>` for each `<child_type>` object in the parent (e.g., `<parent_url>/SequenceAnnotation37`). 
+`<parent_iri>/<child_type>/<child_type_counter>` where the `<parent_iri>` refers to the IRI of the parent object, the `<child_type>` refers to the SBOL class of the child object, and `<child_type_counter>` is a unique index for the child object.
+The `<child_type_counter>` of a new object SHOULD be calculated at time of object creation as 1 + the maximum `<child_type_counter>` for each `<child_type>` object in the parent (e.g., `<parent_iri>/SequenceAnnotation37`). 
 Note that numbering is independent for each type, so a `Component` can have children "SubComponent37" and "Constraint37". This best practice obviously cannot be applied to classes of IRIs that do not allow the specified structure, such as UUIDs.
 
 All examples in this specification use compliant *IRIs*.
