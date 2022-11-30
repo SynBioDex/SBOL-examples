@@ -4,10 +4,10 @@ Maintaining unique IRIs for all SBOL objects can be challenging.  To reduce this
 
 Compliant URLs for `TopLevel` objects MUST conform to the following pattern:
 
-> \<namespace\>/\<collection_structure\>/\<displayId\>
+> <namespace>/<collection_structure>/<displayId>
 
 
-The `\<namespace\>` token MAY further decompose into `\<domain\>/\<root\>` tokens. The `\<root\>` and `\<collection_structure\>` tokens may optionally be omitted; alternatively, they may consist of an arbitrary number of delimiter-separated layers. Note that this pattern means that SBOL-compliant *URLs* can be automatically decomposed with the aid of a `TopLevel` object's `hasNamespace` property. SBOL-compliant objects can be easily remapped into new namespaces by changing only the `\<namespace\>`.
+The `<namespace>` token MAY further decompose into `<domain>/<root>` tokens. The `<root>` and `<collection_structure>` tokens may optionally be omitted; alternatively, they may consist of an arbitrary number of delimiter-separated layers. Note that this pattern means that SBOL-compliant *URLs* can be automatically decomposed with the aid of a `TopLevel` object's `hasNamespace` property. SBOL-compliant objects can be easily remapped into new namespaces by changing only the `<namespace>`.
 
 Consider, for example, the SBOL-compliant *URL*:
 >https://synbiohub.org/igem/2017_distribution/promoters/constitutive/BBa_J23101
@@ -23,8 +23,8 @@ displayId: BBa\_J23101
 
 SBOL-compliant URLs also facilitate auto-construction of child objects with unique *URLs*.
 Child objects of `TopLevel` objects with compliant *URLs* MUST conform to the following pattern:   
-`\<parent_url\>/\<child_type\>\<child_type_counter\>` where the `\<parent_url\>` refers to the URL of the parent object, the `\<child_type\>` refers to the SBOL class of the child object, and `\<child_type_counter\>` is a unique index for the child object.
-The `\<child_type_counter\>` of a new object SHOULD be calculated at time of object creation as 1 + the maximum `\<child_type_counter\>` for each `\<child_type\>` object in the parent (e.g., `\<parent_url\>/SequenceAnnotation37`). 
+`<parent_ur>/<child_type>/<child_type_counter>` where the `<parent_url>` refers to the URL of the parent object, the `<child_type>` refers to the SBOL class of the child object, and `<child_type_counter>` is a unique index for the child object.
+The `<child_type_counter>` of a new object SHOULD be calculated at time of object creation as 1 + the maximum `<child_type_counter>` for each `<child_type>` object in the parent (e.g., `<parent_url>/SequenceAnnotation37`). 
 Note that numbering is independent for each type, so a `Component` can have children "SubComponent37" and "Constraint37".
 
 All examples in this specification use compliant *URLs*.
