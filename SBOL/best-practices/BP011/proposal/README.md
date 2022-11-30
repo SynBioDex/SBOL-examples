@@ -2,7 +2,7 @@ BPP -- Representation of Parts and Devices for Build Planning
 ===================================
 
 
-BP                     | 11
+BP                     | --
 ----------------------|--------------
 **Title**                | Representation of Parts and Devices for Build Planning
 **Authors**           | Jacob Beal (jakebeal@ieee.org), Vinoo Selvarajah, Gael Chambonnier, Traci Haddock-Angelli, Alejandro Vignoni, Gonzalo Vidal, Nicholas Roehner
