@@ -23,6 +23,7 @@ Any `Component` can be interpreted as specifying a mixture of the material entit
   - NCIT:C120268: Inducer
 
 For more information on representing cells, strains, plasmids, and genomes, see BP0010.
+For an example of media implementation using [pySBOL3](https://github.com/SynBioDex/pySBOL3) and [sbol-utilities](https://github.com/SynBioDex/SBOL-utilities), see [media implementation](https://github.com/SynBioDex/SBOL-examples/blob/BP009/SBOL/best-practices/BP009/media-implementation.ipynb).
 
 ## 3 Samples
 
