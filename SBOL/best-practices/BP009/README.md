@@ -2,7 +2,8 @@
 
 ## 1 Mixtures via Components
 
-Any `Component` can be interpreted as specifying a mixture of the material entity (SBO:0000240) `Features` that it includes. The amount of each such instance included in the mixture SHOULD be specified by attaching a `om:Measure` with a `type` set to the appropriate SBO term.
+Any `Component` can be interpreted as specifying a mixture of the material entity ([SBO:0000240](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000240)) `Features` that it includes.
+The amount of each such instance included in the mixture SHOULD be specified by attaching a `om:Measure` with a `type` set to the appropriate SBO term.
 The SBO terms that are RECOMMENDED as appropriate are members of the Systems Description Parameter ([SBO:0000545](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?obo_id=SBO:0000545)) branch of SBO.
 Examples include: 
 
@@ -39,9 +40,11 @@ A complete specification of a sample SHOULD be a `Component` that includes at le
  
  ## 4 Other Experimental Parameters
  
- In order to deal with parameters associated with the context in general but not specific instances, e.g., temperature, pH, total sample volume, the `hasMeasure` property of `Identified` can be used. The `hasMeasure` of a `Component` provides context-free information (e.g., the pH of M9 media, the GC-content of a GFP coding sequence), while the `hasMeasure` of a material entity (SBO:0000240) `Feature` provides a measurement in context (e.g., the dosage of arabinose in a sample).
+ In order to deal with parameters associated with the context in general but not specific instances, e.g., temperature, pH, total sample volume, the `hasMeasure` property of `Identified` can be used. The `hasMeasure` of a `Component` provides context-free information (e.g., the pH of M9 media, the GC-content of a GFP coding sequence), while the `hasMeasure` of a material entity ([SBO:0000240](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000240)) `Feature` provides a measurement in context (e.g., the dosage of arabinose in a sample).
  
- Values of these parameters SHOULD be specified by attaching a `om:Measure` with a `type` set to the appropriate SBO term. The SBO terms that are RECOMMENDED as appropriate are members of the Systems Description Parameter (SBO:0000545) branch of SBO. Examples include:
+ Values of these parameters SHOULD be specified by attaching a `om:Measure` with a `type` set to the appropriate SBO term.
+ The SBO terms that are RECOMMENDED as appropriate are members of the Systems Description Parameter ([SBO:0000545](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000545)) branch of SBO.
+Examples include:
  
   - [SBO:0000147](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000147): thermodynamic temperature (e.g., culturing at 27 C)
   - [SBO:0000332](https://www.ebi.ac.uk/ols/ontologies/sbo/terms?iri=http%3A%2F%2Fbiomodels.net%2FSBO%2FSBO_0000332): half-life of an exponential decay (e.g., decay rate of a gRNA)
