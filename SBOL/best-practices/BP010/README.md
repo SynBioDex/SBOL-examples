@@ -42,13 +42,13 @@ the cell are specified by `Interaction` classes which contain the
   </a><br/>
   <figcaption>
     Figure 1: This is a proposed approach for capturing cell designs in
-    SBOL. A <i>Component</i> annotated with a URI pointing to an entry in the
+    SBOL. A <code>Component</code> annotated with a URI pointing to an entry in the
     NCBI Taxonomy Database is used to capture information about the cell’s
-    strain/species. The <i>Component</i> has a type of "Cell" from the Gene
-    Ontology (GO), and a role of "physical compartment". Another <i>Component</i>
+    strain/species. The <code>Component</code> has a type of "Cell" from the Gene
+    Ontology (GO), and a role of "physical compartment". Another <code>Component</code>
     is used to represent a system in which the cell is
     implemented. Entities, including the cell, are instantiated as
-    <i>Feature</i>s, and processes are captured using the <i>Interaction</i>
+    <code>Feature</code>s, and processes are captured using the <code>Interaction</code>
     class. Processes that are contained within the cell are represented by
     including the cell as a participant with a role of "physical
     compartment".
