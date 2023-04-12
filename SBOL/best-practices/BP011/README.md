@@ -1,5 +1,35 @@
 # Representation of Parts and Devices for Build Planning
 
+## Terminology <a name="terminology"></a>
+
+This specification and set of practices for representation of parts and devices for build planning uses the following definitions:
+
+* **Part**: Design for a single contiguous linear DNA construct with a completely specified sequence.
+
+  * **Unitary Part**: Any part that is not designed with reference to an assembly. In many cases a unitary part may also be a device with a function that can be defined simply (e.g., promoter, CDS, terminator), but unitary parts can potentially also be more complex devices, such as a whole functional unit or even an entire gene cluster (this is why "unitary" is used rather than "basic"). The distinction is in whether an assembly is referenced in the design (i.e., a composite part can be transformed into a unitary part by stripping associated assembly information).
+
+  * **Composite Part**: A part that is designed as the composition of two or more other parts through an assembly. Note that samples of a composite part need not actually be produced by its designated assembly process: for example, the part might be implemented directly via synthesis, including the scars that would have been formed as part of assembly.
+
+  * **Assembled Part**: A part, plus any 5' or 3' flanking scars, within the post-assembly context of a composite part.
+
+  * **Scar**: A sequence that is produced by the combination of flanking sequences in an assembly.
+
+
+* **Backbone**: A DNA construct into which parts are intended to be inserted at one or more designated insertion sites, in order to meet the requirements of an assembly. Precisely one part can be inserted at any given insertion site. In many cases, a backbone will be a circular plasmid with precisly one insertion site, but other types of vector are possible as well, such as linear plasmids, viral replicons, or non-replicating flanking adapters.
+
+  * **Drop-Out Sequence**: A portion of a backbone at an insertion site that is removed when a part is inserted at that site. Some backbones include drop-out parts while others do not.
+
+  * **Part Insert**: A part, plus any 5' and 3' flanking sequences, that is placed into a designated insertion site of a backbone.  
+
+  * **Part in Backbone**: A backbone with at least one insertion site occupied by a part insert. 
+
+  * **Part Extract**: A part, plus any 5' or 3' flanking sequences, that has been extracted from a part in backbone as part of an assembly process. Note that the same extract can be produced from a backbone with flanking sequences and an insert without or a backbone without flanking sequences and an insert that includes them.
+
+
+* **Assembly**: A plan for combining a set of input parts in order to produce an output of either a single composite part or a library of composite parts. The inputs and output may or may not include backbones, depending on the specifics of the assembly. An assembly plan can be executed by appropriate laboratory protocols.
+ 
+* **Device**: Design for a functional mechanism in some biological context. A device may involve multiple parts, non-DNA elements, and interactions. For example, a small molecule sensor might involve two parts, a constitutive promoter/CDS combination and the promoter it results, as well as the protein product of the CDS, the small molecule inducer it binds to, and the production and regulation interactions. Note that functional characterization information pertains to devices, not parts. Note also that a single device might be instantiated by multiple different parts (e.g., a GFP expression device and several alternative encodings for the CDS implementing the device, all of which are expected to have equivalent expression in the intended biological context).
+
 
 ## Representation practices
 
