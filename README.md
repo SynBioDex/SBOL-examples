@@ -13,7 +13,7 @@ For each SBOL and SBOL visual, we have three types of examples (in the respectiv
     - An SBOL file that does not follow the best practices but is still useful in your project. In such cases, we would love to understand why the best practices were not relevant or applicable for your use case.
 
 ## Submitting a proposal for a Best Practice
-A best practice is a recommendation that helps with harmonisation and synergy within the SBOL community. To submit a proposal for a new Best Practice, we encourage you to submit a BEP - **B**est practice **E**hancement **P**roposal. To understand the format and associated files in a BEP, please follow the following [guide](https://github.com/SynBioDex/SBOL-examples/issues/17).
+A best practice is a recommendation that helps with harmonisation and synergy within the SBOL community. To submit a proposal for a new Best Practice, we encourage you to submit a BEP - **B**est practice **E**nhancement **P**roposal. To understand the format and associated files in a BEP, please follow the following [guide](https://github.com/SynBioDex/SBOL-examples/issues/17).
 
 Once your BEP is ready, please follow these steps: 
 
