@@ -6,7 +6,7 @@ This specification and set of practices for representation of parts and devices 
 
 * **Part**: Design for a single contiguous linear DNA construct with a completely specified sequence.
 
-  * **Unitary Part**: Any part that is not designed with reference to an assembly. In many cases a unitary part may also be a device with a function that can be defined simply (e.g., promoter, CDS, terminator), but unitary parts can potentially also be more complex devices, such as a whole functional unit or even an entire gene cluster (this is why "unitary" is used rather than "basic"). The distinction is in whether an assembly is referenced in the design (i.e., a composite part can be transformed into a unitary part by stripping associated assembly information).
+  * **Part Core**: Any part that is not designed with reference to an assembly. In many cases a part core may also be a device with a function that can be defined simply (e.g., promoter, CDS, terminator), but part cores can potentially also be more complex devices, such as a whole functional unit or even an entire gene cluster (this is why "core" is used rather than "basic"). The distinction is in whether an assembly is referenced in the design (i.e., a composite part can be transformed into a part core by stripping associated assembly information).
 
   * **Composite Part**: A part that is designed as the composition of two or more other parts through an assembly. Note that samples of a composite part need not actually be produced by its designated assembly process: for example, the part might be implemented directly via synthesis, including the scars that would have been formed as part of assembly.
 
@@ -36,16 +36,16 @@ This specification and set of practices for representation of parts and devices 
 In the representational practices below, note that whenever an ontology term is specified, it should be taken to indicate either that term _or any of its children_.
 Any tools implementing these practices SHOULD NOT use strict equality tests that omit relationships between terms, even for ontology terms with no children, because children may be added to terms in future versions of the ontology.
 
-### Parts (Unitary, Composite, or Assembled) and Scars
+### Part Cores, Parts, Composite Parts, Assembled Parts, and Scars
 
-- Any part, unitary or composite, is represented by an SBOL `Component` with a `type` property of `SBO:DNA`. As per usual with SBOL, other functional information (e.g., promoter, CDS, complex function) is indicated by a Sequence Ontology term on the `role` property, and sub-structure of the part is indicated by its `feature` properties.  A part MUST have precisely one `sequence` property.
+- Any part core or part is represented by an SBOL `Component` with a `type` property of `SBO:DNA`. As per usual with SBOL, other functional information (e.g., promoter, CDS, complex function) is indicated by a Sequence Ontology term on the `role` property, and sub-structure of the part is indicated by its `feature` properties.  A part MUST have precisely one `sequence` property.
 
-_Example: BBa\_E1010 is a unitary part for an RFP reporter. The BBa\_E1010 part, [https://synbiohub.org/public/igem/BBa\_E1010](https://synbiohub.org/public/igem/BBa_E1010) is a `Component` of type `SBO:DNA` with role `SO:CDS`.  It has a`sequence` linking to [https://synbiohub.org/public/igem/BBa\_E1010\_sequence](https://synbiohub.org/public/igem/BBa_E1010_sequence), which is 706 bp going from start codon to stop codon plus a trailing barcode._
+_Example: BBa\_E1010 is a part core for an RFP reporter. The BBa\_E1010 part, [https://synbiohub.org/public/igem/BBa\_E1010](https://synbiohub.org/public/igem/BBa_E1010) is a `Component` of type `SBO:DNA` with role `SO:CDS`.  It has a`sequence` linking to [https://synbiohub.org/public/igem/BBa\_E1010\_sequence](https://synbiohub.org/public/igem/BBa_E1010_sequence), which is 706 bp going from start codon to stop codon plus a trailing barcode._
 
 #### Composite Parts
 
 - A composite part is represented by a `Component` that has its `prov:wasGeneratedBy` property set to a `prov:Activity` representing a RECOMMENDED assembly plan (see Assembly below).
-Note that this implies that a composite part can be converted to a unitary part by removing its assembly plan (and vice versa, for cases in which that is possible).
+Note that this implies that a composite part can be converted to a non-composite part by removing its assembly plan (and vice versa, for cases in which that is possible).
 Likewise, since `prov:wasGeneratedBy` can have multiple values, a composite part MAY record more than one possible alternative assembly plan.
 
 - An assembled part within a composite part SHOULD be represented by the composite `Component` including a `feature` that is a `SubComponent` with an `instanceOf` property linking to the part that has been included by assembly.
