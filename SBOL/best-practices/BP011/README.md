@@ -117,7 +117,7 @@ To indicate the relationship between each part and that part in backbone, the as
 The assembly plan `Component` SHOULD also abstractly describe the assembly by an `Interface` that indicates each part used in the assembly as an `input` and the composite part as an `output`.
 
 - Specifically, a digestion step is represented by on `Interaction` of type `SBO:cleavage`. Each input vector or enzyme is indicated using a `Participation` object with a `role` property of value `SBO:reactant` and `participant` property whose value is the `Feature` for the vector or enzyme. Each part extract is also indicated using a `Participation`, except that the `role` value is `SBO:product`. 
-A ligation step is the same as a digestion step, except that the `type` of the interaction is `SBO:conversion` (NOTE: this should change to `SBO:ligation` on resolution of [this SBO issue](https://github.com/EBI-BioModels/SBO/issues/3)) and the part extracts are the reactants while the composite part is the product.
+A ligation step is the same as a digestion step, except that the `type` of the interaction is `SBO:ligation` and the part extracts are the reactants while the composite part is the product.
 
 - While many composite parts will be described with just one digestion/ligation stage, an assembly MAY have any number of digestion and ligation stages to produce the ultimately intended composite part.
 
