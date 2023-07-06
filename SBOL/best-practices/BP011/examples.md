@@ -10,7 +10,7 @@ Figure 1 and Figure 2 illustrate two ways of representing the composite part BBa
 
 **Figure 1:** Composite part example UML diagram with `Locations`. 
 
-![composite_part](images/composite_part_example_1.png "Composite part example UML diagram with Locations")
+![composite_part](images/composite_part_example_2.png "Composite part example UML diagram with Locations")
 
 **Figure 2:** Composite part example UML diagram with `Constraints`.
 
