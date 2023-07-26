@@ -21,3 +21,4 @@ Instructions for adding a best practice can be found at the [top level](./../../
 * [BP009](./BP009): Host Context / Ontologies for Experiments
 * [BP010](./BP010): Multicellular System Designs
 * [BP011](./BP011): Representation of Parts and Devices for Build Planning
+* [BP012](./BP012): Annotating Complexity Scores with identity and time information
