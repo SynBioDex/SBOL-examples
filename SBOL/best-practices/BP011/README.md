@@ -24,6 +24,10 @@ This specification and set of practices for representation of parts and devices 
   * **Part in Backbone**: A backbone with at least one insertion site occupied by a part insert. 
 
   * **Part Extract**: A part, plus any 5' or 3' flanking sequences, that has been extracted from a part in backbone as part of an assembly process. Note that the same extract can be produced from a backbone with flanking sequences and an insert without or a backbone without flanking sequences and an insert that includes them.
+    
+  * **Open Backbone**: A backbone that has been cut open to allow it to incorporate a part extract.
+    
+  * **Open Part in Backbone**: A an part in backbone that has been cut open to allow it to incorporate a part extact.
 
 
 * **Assembly**: A plan for combining a set of input parts in order to produce an output of either a single composite part or a library of composite parts. The inputs and output may or may not include backbones, depending on the specifics of the assembly. An assembly plan can be executed by appropriate laboratory protocols.
@@ -98,8 +102,8 @@ Note that any insertion not at the end of a backbone implies that it will have a
 
 - If the part insert replaces a drop-out sequence in the backbone, then the drop-out sequence should be excluded from the part in backbone construct by excluding its range in the `sourceLocation` properties of the backbone `SubComponent`.
 
-- The representation of the part extract from a part in backbone is much like that of the part insert. If the part extract has no flanking sequences, then the part extract is simply the `Component` for the part.
-If the part extract includes flanking sequences, then the part extract is represented by a `Component` that includes both the part and its flanking sequences as features. In some cases, the part extract is identical to the part insert, in which case the same `Component` can be used to represent both.
+- The representation of the part extract from a part in backbone is much like that of the part insert. If the part extract has no flanking sequences, then the part extract is simply the `Component` for the part core.
+If the part extract includes flanking sequences, then the part extract is represented by a `Component` that includes both the part and its flanking sequences as features. In some cases, the part extract is identical to the part insert, in which case the same `Component` can be used to represent both. Open backbone and open part in backbone are the same, but with the starting point being the backbone or part in backbone in stead of the part insert.
 
 
 ### Assembly <a name="assembly"></a>
@@ -111,17 +115,17 @@ If the part extract includes flanking sequences, then the part extract is repres
 - The assembly plan component SHOULD have a `SubComponent` for the composite part and for each part used in its assembly.
 Typically, however, these parts must be in backbone in order for the assembly to take place.
 As such, the assembly plan `Component` SHOULD have a `SubComponent` for the composite part in backbone and a `SubComponent` for each part in backbone that is used in the assembly.
-To indicate the relationship between each part and that part in backbone, the assembly plan SHOULD contain a `Constraint` with a `type` value of `contains`, the part in backbone as the value of `subject`, and the composite part produced as the value of `object`.
+To indicate the relationship between each part core and that part in backbone, the assembly plan SHOULD contain a `Constraint` with a `type` value of `contains`, the part in backbone as the value of `subject`, and the composite part produced as the value of `object`.
 
-- The assembly of the composite part in backbone starting other parts in backbone is described with a set of `Interaction` objects describing digestion to produce part extracts and ligation to produce one or more composite parts in backbone.
+- The assembly of the composite part in backbone starting from other parts in backbone and/or backbones is described with a set of `Interaction` objects describing digestion to produce part extracts and ligation to produce one or more composite parts in backbone.
 The assembly plan `Component` SHOULD also abstractly describe the assembly by an `Interface` that indicates each part used in the assembly as an `input` and the composite part as an `output`.
 
-- Specifically, a digestion step is represented by on `Interaction` of type `SBO:cleavage`. Each input vector or enzyme is indicated using a `Participation` object with a `role` property of value `SBO:reactant` and `participant` property whose value is the `Feature` for the vector or enzyme. Each part extract is also indicated using a `Participation`, except that the `role` value is `SBO:product`. 
-A ligation step is the same as a digestion step, except that the `type` of the interaction is `SBO:ligation` and the part extracts are the reactants while the composite part is the product.
+- Specifically, a digestion step is represented by on `Interaction` of type `SBO:cleavage`. Each input vector or enzyme is indicated using a `Participation` object with a `role` property of value `SBO:reactant` and `participant` property whose value is the `Feature` for the vector or enzyme. Each part extract, open backbone, and/or open part in backbone is also indicated using a `Participation`, except that the `role` value is `SBO:product`. 
+A ligation step is the same as a digestion step, except that the `type` of the interaction is `SBO:ligation` and the part extracts, open backbones, and/or open parts in backbone are the reactants while the composite part is the product.
 
 - While many composite parts will be described with just one digestion/ligation stage, an assembly MAY have any number of digestion and ligation stages to produce the ultimately intended composite part.
 
-- An assembly plan MAY produce multiple composite parts outputs. 
+- An assembly plan MAY produce multiple composite part outputs. 
 For example some intermediate products may be used in multiple composites or may themselves be considered ouputs.
 In this case, the `Interface` will have multiple `output` values, one for each composite part that points to the assembly plan with its its `prov:wasGeneratedBy`.
 
