@@ -17,6 +17,8 @@ This specification and set of practices for representation of parts and devices 
 
 * **Backbone**: A DNA construct into which parts are intended to be inserted at one or more designated insertion sites, in order to meet the requirements of an assembly. Precisely one part can be inserted at any given insertion site. In many cases, a backbone will be a circular plasmid with precisly one insertion site, but other types of vector are possible as well, such as linear plasmids, viral replicons, or non-replicating flanking adapters.
 
+  * **Backbone Core**: Any backbone that is not designed with reference to an assembly. This is a linear part that may become circular after the assembly, common features that are useful to identify on backbone cores are origin of replication and antibiotic resistance. The distinction is in whether an assembly is referenced in the design (i.e., an open backbone can be transformed into a backbone core by stripping associated assembly information such as flanking scars os fusion sites).
+
   * **Drop-Out Sequence**: A portion of a backbone at an insertion site that is removed when a part is inserted at that site. Some backbones include drop-out parts while others do not.
 
   * **Part Insert**: A part, plus any 5' and 3' flanking sequences, that is placed into a designated insertion site of a backbone.  
